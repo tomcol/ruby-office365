@@ -10,6 +10,8 @@ module Office365
     autoload :Owner,              "office365/models/owner"
     autoload :EmailAddress,       "office365/models/email_address"
     autoload :Contact,            "office365/models/contact"
+    autoload :ContactFolder,      "office365/models/contact_folder"
+    autoload :MasterCategory,     "office365/models/master_category"
     autoload :AccessToken,        "office365/models/access_token"
     autoload :Event,              "office365/models/event"
   end

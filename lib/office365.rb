@@ -10,7 +10,7 @@ require "office365/models"
 module Office365
   class Error < StandardError; end
   class InvalidAuthenticationTokenError < StandardError; end
-  class InvaliRequestError < StandardError; end
+  class InvalidRequestError < StandardError; end
 
   # Handling expected errors -> https://learn.microsoft.com/en-us/graph/best-practices-concept#handling-expected-errors
   class AccessDeniedError < StandardError; end
@@ -22,6 +22,8 @@ module Office365
   API_VERSION   = "v1.0"
 
   LOGIN_HOST    = "https://login.microsoftonline.com"
-  SCOPE         = "offline_access User.read Calendars.read Mail.ReadBasic Contacts.Read"
+  # SCOPE         = "offline_access User.read Calendars.read Mail.ReadBasic Contacts.Read"
+  # SCOPE         = "MailboxSettings.ReadWrite User.Read.All Contacts.ReadWrite"
+  SCOPE         = "User.Read.All Contacts.ReadWrite"
   # Your code goes here...
 end

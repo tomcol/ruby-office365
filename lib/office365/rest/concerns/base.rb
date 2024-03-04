@@ -22,6 +22,16 @@ module Office365
           Request.new(access_token, debug: debug).get(request_uri)
         end
 
+        def post_request(args: {}, params: {})
+          request_uri = parse_and_build_request_url(args)
+          Request.new(access_token, debug: debug).post(request_uri, params)
+        end
+
+        def patch_request(args: {}, params: {})
+          request_uri = parse_and_build_request_url(args)
+          Request.new(access_token, debug: debug).patch(request_uri, params)
+        end
+
         # https://learn.microsoft.com/en-us/graph/query-parameters?view=graph-rest-1.0
         # OData system query options
         # Click the examples to try them in [Graph Explorer](https://developer.microsoft.com/zh-cn/graph/graph-explorer)

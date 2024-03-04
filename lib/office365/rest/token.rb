@@ -24,7 +24,19 @@ module Office365
 
       def refresh_token!
         Models::AccessToken.new(
-          Request.new(nil, debug: debug).post(token_url, token_params)
+          Request.new(nil, debug: debug).post_no_auth_header(token_url, token_params)
+        )
+      end
+
+      def cc_token!
+        Models::AccessToken.new(
+          Request.new(nil, debug: debug).post_no_auth_header(token_url, cc_token_params)
+        )
+      end
+
+      def ropc_token!
+        Models::AccessToken.new(
+          Request.new(nil, debug: debug).post_no_auth_header(token_url, ropc_token_params)
         )
       end
 
@@ -36,6 +48,29 @@ module Office365
           client_id: client_id,
           client_secret: client_secret,
           grant_type: "refresh_token"
+        }
+      end
+
+      def cc_token_params
+        {
+          client_id: client_id,
+          scope: 'https://graph.microsoft.com/.default',
+          client_secret: client_secret,
+          grant_type: "client_credentials"
+        }
+      end
+
+      def ropc_token_params
+        {
+          client_id: client_id,
+          grant_type: "password",
+          # scope: Office365::SCOPE,
+          # scope: 'Application.ReadWrite.All',
+          scope: 'https://graph.microsoft.com/.default',
+          # scope: "Contacts.ReadWrite Contacts.ReadWrite.Shared MailboxSettings.ReadWrite User.Read.All profile openid email",
+          # scope: "Contacts.ReadWrite User.Read.All",
+          username: delegate_user_name,
+          password: delegate_password
         }
       end
     end

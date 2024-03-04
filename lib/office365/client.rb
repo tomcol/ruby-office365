@@ -2,7 +2,7 @@
 
 module Office365
   class Client
-    attr_accessor :client_id, :client_secret, :access_token, :refresh_token, :redirect_uri, :tenant_id, :debug
+    attr_accessor :client_id, :client_secret, :access_token, :refresh_token, :redirect_uri, :tenant_id, :debug, :delegate_user_name, :delegate_password
 
     # Initializes a new Client object
     #
