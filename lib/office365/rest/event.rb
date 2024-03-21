@@ -12,6 +12,12 @@ module Office365
       def events(args = {})
         wrap_results(args.merge(kclass: Models::Event, base_uri: "/me/events"))
       end
+
+      def user_events(user_id, args = {})
+        raise Error, "Contact.user_events user id must be supplied" if user_id.nil?
+
+        wrap_results(args.merge(kclass: Models::Event, base_uri: "/users/#{user_id}/calendar/events"))
+      end
     end
   end
 end
